@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-const Addtask = ({ onAdd }) => {
+const AddTask = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState("Medium");
@@ -47,16 +47,15 @@ const Addtask = ({ onAdd }) => {
 
     if (!title || !desc || !dueDate) {
       toast.error("Please fill Title, Description, and Due Date", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      
-    });
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       return;
     }
 
@@ -73,16 +72,15 @@ const Addtask = ({ onAdd }) => {
     };
 
     onAdd(newTask);
-     toast.success("Task added successfully!", {
+    toast.success("Task added successfully!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
-      closeOnClick: true, 
+      closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
       theme: "dark",
-      
     });
     resetForm();
   };
@@ -172,4 +170,4 @@ const Addtask = ({ onAdd }) => {
   );
 };
 
-export default Addtask;
+export default AddTask;

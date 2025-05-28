@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
-import Addtask from "./AddTask";
+import AddTask from "./AddTask";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
 const TaskManager = () => {
@@ -84,7 +84,7 @@ const TaskManager = () => {
           />
         </button>
 
-        {showForm && <Addtask onAdd={handleAddTask} />}
+        {showForm && <AddTask onAdd={handleAddTask} />}
       </div>
 
       <div ref={ref} className="bg-zinc-800">
