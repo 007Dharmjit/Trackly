@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+body {
+  background-color: #27272a;
+  color: white;
+   font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.Header {
+  font-family: "Playwrite HU", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.title{
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
