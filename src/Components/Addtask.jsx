@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+
 const AddTask = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -15,18 +16,11 @@ const AddTask = ({ onAdd }) => {
     setSubtasks([{ name: "", done: false }]);
   };
 
-  function generateRandomId() {
-    // Generate a random 5-digit number (10000 to 99999)
+  const generateRandomId = () => {
     const randomFiveDigit = Math.floor(10000 + Math.random() * 90000);
-
-    // Get current time in seconds since Unix epoch
     const currentTimeInSeconds = Math.floor(Date.now() / 1000);
-
-    // Multiply the two numbers
-    const id = randomFiveDigit * currentTimeInSeconds;
-
-    return id;
-  }
+    return randomFiveDigit * currentTimeInSeconds;
+  };
 
   const handleSubtaskChange = (index, value) => {
     const updated = [...subtasks];
@@ -49,15 +43,12 @@ const AddTask = ({ onAdd }) => {
       toast.error("Please fill Title, Description, and Due Date", {
         position: "top-center",
         autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
         theme: "dark",
       });
       return;
     }
+
+    const timestamp = new Date().toISOString();
 
     const newTask = {
       id: generateRandomId(),
@@ -66,6 +57,8 @@ const AddTask = ({ onAdd }) => {
       priority,
       dueDate,
       completed: false,
+      createdAt: timestamp,
+      updatedAt: timestamp,
       subtasks: subtasks
         .filter((st) => st.name.trim() !== "")
         .map((st) => ({ name: st.name.trim(), done: false })),
@@ -75,11 +68,6 @@ const AddTask = ({ onAdd }) => {
     toast.success("Task added successfully!", {
       position: "top-center",
       autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
       theme: "dark",
     });
     resetForm();
@@ -92,7 +80,7 @@ const AddTask = ({ onAdd }) => {
     >
       <h3 className="text-lg sm:text-xl mb-4 font-semibold">Add New Task</h3>
 
-      {/* Row 1 */}
+      {/* Title, Due Date, and Priority */}
       <div className="flex flex-col sm:flex-row gap-4 mb-4">
         <input
           type="text"
@@ -105,7 +93,7 @@ const AddTask = ({ onAdd }) => {
           type="date"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className="w-full sm:w-auto p-2 rounded-md bg-zinc-800  border border-zinc-700"
+          className="w-full sm:w-auto p-2 rounded-md bg-zinc-800 border border-zinc-700"
         />
         <select
           value={priority}
@@ -134,7 +122,7 @@ const AddTask = ({ onAdd }) => {
           <div key={index} className="flex gap-2 mb-2">
             <input
               type="text"
-              value={subtask.text}
+              value={subtask.name}
               onChange={(e) => handleSubtaskChange(index, e.target.value)}
               className="flex-1 p-2 rounded-md bg-zinc-800 border border-zinc-700"
               placeholder={`Subtask ${index + 1}`}
@@ -153,7 +141,7 @@ const AddTask = ({ onAdd }) => {
         <button
           type="button"
           onClick={addSubtaskField}
-          className="name-sm mt-1 px-3 py-1 bg-blue-600 rounded hover:bg-blue-700"
+          className="mt-1 px-3 py-1 bg-blue-600 rounded hover:bg-blue-700 text-sm"
         >
           + Add Subtask
         </button>
