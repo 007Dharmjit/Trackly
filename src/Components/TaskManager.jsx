@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
-import AddTask from "./AddTask";
+import AddTask from "./Addtask";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
 
