@@ -12,7 +12,7 @@ const App = () => {
         <ToastContainer />
 
         {/* App header - centered and responsive text size */}
-        <h1 className="header flex items-center justify-center text-4xl sm:text-5xl font-bold mb-6">
+        <h1 className="Header flex items-center justify-center text-4xl sm:text-5xl font-bold mb-6">
           Trackly
         </h1>
 
